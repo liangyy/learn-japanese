@@ -1,2 +1,2 @@
-source('learn_func.R')
+source('codes/learn_func.R')
 learn_hiragana('yanyul')

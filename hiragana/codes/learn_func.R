@@ -1,6 +1,6 @@
 learn_hiragana = function(user_name, fresh_start = F) {
-  df = readRDS('../resources/char.rds')
-  user_file = paste0('../user_record/', user_name, '.rds')
+  df = readRDS('resources/char.rds')
+  user_file = paste0('user_record/', user_name, '.rds')
   if(file.exists(user_file)) {
     user = readRDS(user_file)
     char_correct_count = user$char_correct_count[[nrow(user$record)]]
@@ -30,7 +30,8 @@ learn_hiragana = function(user_name, fresh_start = F) {
     prob = prob / sum(prob)
     r = sample(1 : nrow(df), prob = prob, size = 1)
     # grid::grid.raster(images[[r]])
-    answer = readline(paste0('What is this [type `exit` to end] ?   ', df$hiragana[r], '   '))
+    cat(paste0('What is this [type `exit` to end] ?   ', df$hiragana[r], '   '))
+    answer = readLines('stdin', n = 1)
     correct_answer = paste0(df$consonant[r], df$vowel[r])
     if(answer == 'exit') {
       if(ntest > 0) {
